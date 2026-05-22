@@ -1,34 +1,417 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Viktor's Resume</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Viktor Gudleifsson | Software Developer & ML Engineer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: min(1100px, 90%);
+            margin: auto;
+        }
+
+        header {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 3rem 0;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text h2 {
+            font-size: 1.3rem;
+            color: #38bdf8;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .hero-text p {
+            color: #cbd5e1;
+            margin-bottom: 1.3rem;
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.9rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #38bdf8;
+            color: #0f172a;
+        }
+
+        .btn-primary:hover {
+            background: #0ea5e9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            border: 1px solid #38bdf8;
+            color: #38bdf8;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            width: 320px;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 24px;
+            border: 4px solid #38bdf8;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        section {
+            padding: 3.5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 1.5rem;
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #38bdf8;
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            color: #38bdf8;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .timeline-item {
+            background: #1e293b;
+            padding: 1.2rem;
+            border-radius: 16px;
+            border-left: 4px solid #38bdf8;
+        }
+
+        .timeline-item h3 {
+            color: white;
+            margin-bottom: 0.4rem;
+        }
+
+        .timeline-item span {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill {
+            background: #1e293b;
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 0.8rem 1.2rem;
+            border-radius: 999px;
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-content h3 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .project-content p {
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            color: #94a3b8;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .contact-links a {
+            background: #1e293b;
+            padding: 1rem 1.2rem;
+            border-radius: 12px;
+            transition: 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            background: #38bdf8;
+            color: #0f172a;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                text-align: center;
+            }
+
+            .hero-buttons,
+            .contact-links {
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Viktor Gudleifsson</h1>
-    <img src="Resources/Pictures/Headshot_photo.jfif" height="200">
-    <hr/>
-    <h2>Summary</h2>
-    <p>
-        Hello!<br/>
-        My name is Viktor Gudleifsson and I am 25 years old! 
-    </p>
+
+    <header>
+        <div class="container hero">
+            <div class="hero-text">
+                <h1>Viktor Gudleifsson</h1>
+                <h2>M.Sc. Computer Science Student • Software Developer • Machine Learning Enthusiast</h2>
+
+                <p>
+                    Computer Science master's student specializing in software development and machine intelligence.
+                    Passionate about machine learning, AI systems, and building practical software solutions.
+                    Experienced with Python, Java, C/C++, web development, and modern ML workflows.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Contact Me</a>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <img src="Resources/Pictures/Headshot_photo.jfif" alt="Viktor Gudleifsson" />
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>M.Sc. Computer Science</h3>
+                    <span>Software Development & Machine Intelligence • 2003 – Current</span>
+                    <p>
+                        Currently studying advanced software engineering, machine learning, artificial intelligence,
+                        and modern development workflows.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title">Relevant Coursework</h2>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Advanced Machine Learning</h3>
+                    <p>
+                        Bayesian Optimization, Reinforcement Learning, RNNs & Transformers,
+                        image classification and generation.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Artificial Intelligence</h3>
+                    <p>
+                        Adversarial Search, NLP, probabilistic reasoning over time,
+                        intelligent systems and AI concepts.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Software Development</h3>
+                    <p>
+                        DevOps, frontend/backend development, team collaboration,
+                        and large-scale software development practices.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+
+            <div class="skills">
+                <div class="skill">Python</div>
+                <div class="skill">Java</div>
+                <div class="skill">C/C++</div>
+                <div class="skill">R</div>
+                <div class="skill">SQL</div>
+                <div class="skill">HTML</div>
+                <div class="skill">CSS</div>
+                <div class="skill">JavaScript</div>
+                <div class="skill">Machine Learning</div>
+                <div class="skill">Transformers</div>
+                <div class="skill">GitHub</div>
+                <div class="skill">Linux</div>
+                <div class="skill">Hugging Face</div>
+                <div class="skill">LaTeX</div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Student Worker — Student Consulting</h3>
+                    <span>April 2023 – Present</span>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Sales Administrator — K.W. Bruun (WISMO)</h3>
+                    <span>June 2024 – August 2024</span>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Insurance Advisor — Moderna Försäkringar / Trygg-Hansa</h3>
+                    <span>February 2020 – May 2022</span>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Sales — Face2Face AB</h3>
+                    <span>September 2019 – December 2019</span>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Youth Leader — Swedish Church</h3>
+                    <span>August 2018 – June 2019</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     
-    <h2>Education</h2>
-    <p>I am currently studying to be a Civil Engineer in Computer Science with a Master in either Machine-Learning or Program Developer.</p>
 
-    <h2>Work Experience</h2>
-    <p>I have worked various jobs through the years!</p>
+    <section>
+        <div class="container">
+            <h2 class="section-title">Languages</h2>
 
-    <h2>Previous Projects</h2>
-    <ol>
-        <li><a href="https://huggingface.co/spaces/viktorgudleifsson/EDAN20-lab4-vi5208sn-s">Language detector</a> </li>
-        <li><a href="https://huggingface.co/spaces/viktorgudleifsson/sentence_embedder">Sentence embedder</a> </li>
-    </ol>
-    <hr/>
-    <a href="Pages/contact.html">Contact Me</a>
-    <hr/>
-    <footer>©Viktor Gudleifsson. All rights reserved.</footer>
+            <div class="skills">
+                <div class="skill">English</div>
+                <div class="skill">Swedish</div>
+                <div class="skill">Icelandic</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+
+            <p>
+                Feel free to reach out.
+            </p>
+
+            <div class="contact-links">
+                <a href="mailto:viktorgudleifs@gmail.com">viktorgudleifs@gmail.com</a>
+                <a href="tel:+46729639594">+46 72 963 95 94</a>
+                <a href="https://github.com/viktorgudleifsson" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/viktor-gudleifsson-571213153/" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Viktor Gudleifsson. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
+
